@@ -1,0 +1,38 @@
+var Tabs = Demo.require('./tabs');
+
+var DemoTabs = React.createClass({
+
+	render: function() {
+		return (
+			<div>
+				<h2>Horizontal</h2>
+				{this._renderTabs("horizontal")}
+				<hr />
+				<h2>Vertical</h2>
+				{this._renderTabs("vertical")}
+			</div>
+		);
+	},
+
+	_renderTabs: function(layout) {
+		return (
+			<Tabs layout={layout}>
+				<Tabs.Panel title="Tab A">
+					<p>Tab A</p>
+				</Tabs.Panel>
+
+				<Tabs.Panel title="Tab B">
+					<p>Tab B</p>
+				</Tabs.Panel>
+
+				<Tabs.Panel title="Tab C">
+					<p>Tab C</p>
+				</Tabs.Panel>
+			</Tabs>
+		);
+	}
+});
+
+React.render(
+  React.createElement(DemoTabs, {}), document.getElementById(Demo.domId)
+);

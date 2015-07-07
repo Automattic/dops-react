@@ -1,0 +1,88 @@
+var View = Demo.require('./view');
+
+var DemoView = React.createClass({
+
+	styles: {
+		view: {
+			border: "1px dashed #bbb"
+		},
+		red: {
+			backgroundColor: '#F00',
+			color: 'white'
+		},
+		green: {
+			backgroundColor: '#0F0',
+			color: 'white'
+		},
+		blue: {
+			backgroundColor: '#00F',
+			color: 'white'
+		},
+		yellow: {
+			backgroundColor: '#FF0',
+			color: 'black'
+		}
+	},
+	
+	render: function() {
+		return (
+			<div>
+				<h2>Column</h2>
+				<View column style={this.styles.view}>
+					<View child style={this.styles.red}>Red</View>
+					<View child style={this.styles.green}>Green</View>
+					<View child style={this.styles.blue}>Blue</View>
+				</View>
+
+				<hr />
+				<h2>Column with padding</h2>
+				<View column padding={10} style={this.styles.view}>
+					<View child style={this.styles.red}>Red</View>
+					<View child style={this.styles.green}>Green</View>
+					<View child style={this.styles.blue}>Blue</View>
+				</View>
+
+				<hr />
+				<h2>Row with padding</h2>
+				<View row padding={10} style={this.styles.view}>
+					<View child style={this.styles.red}>Red</View>
+					<View child style={this.styles.green}>Green</View>
+					<View child style={this.styles.blue}>Blue</View>
+				</View>
+
+				<hr />
+				<h2>Row with padding and size weighting</h2>
+				<View row padding={10} style={this.styles.view}>
+					<View child width={1} style={this.styles.red}>Red</View>
+					<View child width={2} style={this.styles.green}>Green</View>
+					<View child width={1} style={this.styles.blue}>Blue</View>
+				</View>
+
+				<hr />
+				<h2>Proper nesting without weirdness requires "&lt;View child&gt;" for interior elements</h2>
+				<View row padding={10} style={this.styles.view}>
+					<View child stretch style={this.styles.red}>Red
+						<div style={this.styles.green}>Green</div>
+					</View>
+					<View child stretch style={this.styles.blue}>Blue
+						<div style={this.styles.yellow}>Yellow</div>
+					</View>
+				</View>
+				<h2>FYI, that same demo above without using Child looks like this:</h2>
+				<p>(it flexes all the elements inside the View children)</p>
+				<View row padding={10} style={this.styles.view}>
+					<View stretch style={this.styles.red}>Red
+						<div style={this.styles.green}>Green</div>
+					</View>
+					<View stretch style={this.styles.blue}>Blue
+						<div style={this.styles.yellow}>Yellow</div>
+					</View>
+				</View>
+			</div>
+		);
+	},
+});
+
+React.render(
+  React.createElement(DemoView, {}), document.getElementById(Demo.domId)
+);
