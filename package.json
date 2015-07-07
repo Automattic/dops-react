@@ -21,6 +21,7 @@
     "grunt-contrib-watch": "~0.5.3",
     "grunt-env": "^0.4.4",
     "grunt-envify": "0.0.2",
+    "grunt-gh-pages": "^0.10.0",
     "grunt-minifyify": "^3.2.1",
     "grunt-notify": "^0.4.1",
     "grunt-react": "^0.12.2",

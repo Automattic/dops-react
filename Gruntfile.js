@@ -142,9 +142,16 @@ module.exports = function(grunt) {
 					}
 				]	
 			}
+		},
+		'gh-pages': {
+			options: {
+				base: '.'
+			},
+			src: ['demo.html', 'js/**/*', 'css/demo.css', 'node_modules/codemirror/lib/codemirror.css', 'node_modules/codemirror/theme/solarized.css']
 		}
 	});
 
+	grunt.loadNpmTasks('grunt-gh-pages');
 	grunt.loadNpmTasks('grunt-contrib-jshint-jsx');
 	grunt.loadNpmTasks('grunt-notify');
 	grunt.loadNpmTasks('grunt-envify');
