@@ -7,6 +7,7 @@ var React = require('react'),
 var _demos = [
 	{
 		title: "Modal",
+		description: 'A simple fixed modal which has a close button, title and subtitle, and can be narrow, medium or wide',
 		id: "demo-modal",
 		js: require('./demo/demo-modal'),
 		requires: {
@@ -15,6 +16,7 @@ var _demos = [
 	},
 	{
 		title: "Password Box",
+		description: "A box which displays an obfuscated password that can be hidden. Great for API keys.",
 		id: "demo-password-box",
 		js: require('./demo/demo-password-box'),
 		requires: {
@@ -23,6 +25,7 @@ var _demos = [
 	},
 	{
 		title: "Cards",
+		description: "Cards are boxes that have a title and sections. The sections can be laid out with the title above ('inline') or to the side.",
 		id: "demo-card",
 		js: require('./demo/demo-card'),
 		requires: {
@@ -31,6 +34,7 @@ var _demos = [
 	},
 	{
 		title: "Tabs",
+		description: "Vertical or horizontal tabbed panel",
 		id: "demo-tabs",
 		js: require('./demo/demo-tabs'),
 		requires: {
@@ -39,6 +43,7 @@ var _demos = [
 	},
 	{
 		title: "Alert Box",
+		description: "An inline pop-down alert box that can be made alarming-to-look-at by providing status='error'. Good for confirming irreversible actions.",
 		id: "demo-alert-box",
 		js: require('./demo/demo-alert-box'),
 		requires: {
@@ -48,6 +53,7 @@ var _demos = [
 	},
 	{
 		title: "Icon",
+		description: "A thin wrapped for Genericons, Automattic's open-source icon font for blogs",
 		id: "demo-icons",
 		js: require('./demo/demo-icon'),
 		requires: {
@@ -56,6 +62,7 @@ var _demos = [
 	},
 	{
 		title: "HoverIcon",
+		description: "Same as the Icon component, but with a tooltip",
 		id: "demo-hover-icons",
 		js: require('./demo/demo-hover-icon'),
 		requires: {
@@ -64,6 +71,7 @@ var _demos = [
 	},
 	{
 		title: "Wizard",
+		description: "Simple left-right wizard with animated transition and the ability to jump to any step via its API",
 		id: "demo-wizard",
 		js: require('./demo/demo-wizard'),
 		requires: {
@@ -72,6 +80,7 @@ var _demos = [
 	},
 	{
 		title: "Button",
+		description: "Simple button element with 3 sizes and 2 colors.",
 		id: "demo-button",
 		js: require('./demo/demo-button'),
 		requires: {
@@ -80,6 +89,7 @@ var _demos = [
 	},
 	{
 		title: "Form",
+		description: "Fairly sophisticated form library that builds on Formsy to provide inline, extensible validation",
 		id: "demo-form",
 		js: require('./demo/demo-form'),
 		requires: {
@@ -89,6 +99,7 @@ var _demos = [
 	},
 	{
 		title: "View",
+		description: "An implementation of Flexbox. Needs IE10+ and modern versions of Chrome/Firefox/Safari to work correctly. Great for forms!",
 		id: "demo-view",
 		js: require('./demo/demo-view'),
 		requires: {
@@ -98,6 +109,7 @@ var _demos = [
 	},
 	{
 		title: "Face",
+		description: "A simple pure-CSS face with configurable happiness and size",
 		id: "demo-face",
 		js: require('./demo/demo-face'),
 		requires: {
@@ -106,6 +118,7 @@ var _demos = [
 	},
 	{
 		title: "Slider",
+		description: "A slider with a dynamic label",
 		id: "demo-slider",
 		js: require('./demo/demo-slider'),
 		requires: {
@@ -130,6 +143,7 @@ var DemoModule = React.createClass({
 		return (
 			<Reset className="demo">
 				<h1>{this.props.demo.title}</h1>
+				<h2>{this.props.demo.description}</h2>
 				<Col left>
 					{this._renderScript( this.props.demo.js, this.props.demo.id )}
 				</Col>
