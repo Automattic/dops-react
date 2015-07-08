@@ -70,6 +70,12 @@ var TextInput = React.createClass({displayName: "TextInput",
 		validationError: React.PropTypes.string
 	},
 
+	getInitialState: function() {
+		return {
+			uniqueId: getUniqueId()
+		};
+	},
+
 	changeValue: function (event) {
 		this.setValue(event.currentTarget.value);
     },
@@ -79,7 +85,7 @@ var TextInput = React.createClass({displayName: "TextInput",
 
 		if ( this.props.label ) {
 			return (
-				React.createElement(Form.Label, {style: m(formStyles.inputWrapper, style), label: label, labelSuffix: labelSuffix, htmlFor: this.props.name, required: this.props.required}, 
+				React.createElement(Form.Label, {style: m(formStyles.inputWrapper, style), label: label, labelSuffix: labelSuffix, htmlFor: this.state.uniqueId, required: this.props.required}, 
 					($__1 = this)._renderInput.apply($__1, [this.props.label].concat(other))
 				)
 			);
@@ -100,7 +106,7 @@ var TextInput = React.createClass({displayName: "TextInput",
 			React.createElement("div", null, 
 				React.createElement("input", React.__spread({
 					type: "text", 
-					id: this.props.name}, 
+					id: this.state.uniqueId}, 
 					 other , 
 					{style: m(styles.input, errorMessage && styles.errorField), 
 					onChange: this.changeValue, 
