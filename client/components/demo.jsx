@@ -25,7 +25,7 @@ var _demos = [
 	},
 	{
 		title: "Cards",
-		description: "Cards are boxes that have a title and sections. The sections can be laid out with the title above ('inline') or to the side.",
+		description: "Cards are boxes that have a title and sections. The sections can be laid out with the title above ('vertical') or to the side.",
 		id: "demo-card",
 		js: require('./demo/demo-card'),
 		requires: {
