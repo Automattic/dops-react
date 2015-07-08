@@ -4,7 +4,7 @@
 
 A bunch of useful, opinionated React components that include their own styling and try to do the "right thing" on mobile and desktop browsers.
 
-### [Check out the live demo](http://automattic.github.io/dops-react/demo.html) to see what's available.
+### [Check out the live demo](http://automattic.github.io/dops-react/demo.html)
 
 ```bash
 npm install dops-react --save-dev
@@ -181,7 +181,7 @@ Injecting React components into the browser as both readable code and running ja
 
 TODO - no tests yet GIANT FROWNY FACE.
 
-## Publishing the [demo.html public site](http://automattic.github.io/dops-react/demo.html)
+## Publishing the [demo site](http://automattic.github.io/dops-react/demo.html)
 
 ```bash
 grunt gh-pages
