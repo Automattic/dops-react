@@ -132,6 +132,22 @@ var DemoModule = React.createClass({
 		demo: React.PropTypes.any.isRequired
 	},
 
+	styles: {
+		wrapper: {
+			paddingTop: 40,
+			clear: 'both'
+		},
+		code: {
+			maxHeight: 400,
+			overflow: 'scroll',
+			border: '1px solid #aaa'
+		},
+		live: {
+			padding: 5,
+			border: '1px solid #aaa'
+		}
+	},
+
 	componentWillMount: function () {
 		// inject dependencies into the global fake require cache
 		Object.keys(this.props.demo.requires).forEach( function( key ) {
@@ -141,7 +157,7 @@ var DemoModule = React.createClass({
 
 	render: function() {
 		return (
-			<Reset className="demo">
+			<div style={this.styles.wrapper}>
 				<h1>{this.props.demo.title}</h1>
 				<h2>{this.props.demo.description}</h2>
 				<Col left>
@@ -150,7 +166,7 @@ var DemoModule = React.createClass({
 				<Col right>
 					{this._renderLive( this.props.demo.js, this.props.demo.id )}
 				</Col>
-			</Reset>
+			</div>
 		);
 	},
 
@@ -158,7 +174,7 @@ var DemoModule = React.createClass({
 		var sanitizedJs = js.replace( /Demo\.require/g, 'require' ).replace( /Demo\.domId/g, "'"+id+"'" );
 		
 		return (
-			<div className="code">
+			<div style={this.styles.code}>
 				<Codemirror defaultValue={sanitizedJs} theme="solarized" mode="text/e4x" readOnly={true} lineNumbers={true} />
 			</div>
 		);
@@ -167,7 +183,7 @@ var DemoModule = React.createClass({
 	_renderLive: function ( js, id ) {
 		var liveJs = js.replace( /Demo\.domId/g, "'"+id+"'" );
 		return (
-			<div className="live">
+			<div style={this.styles.live}>
 				<script type="text/jsx" dangerouslySetInnerHTML={{__html: liveJs}} />
 				<div id={id}>demo container</div>
 			</div>
@@ -188,12 +204,14 @@ var Demo = React.createClass({
 
 	render: function() {
 		return (
-			<div>
-				<h1>Demo</h1>
+			<Reset>
+				<h1>Demo of DOPS-React components</h1>
+				<p>This demonstrates some of the functionality provided by the DOPS-React library, a set of simple React components for building rich user interfaces.</p>
+				<p>For more information, check out the <a href="https://github.com/Automattic/dops-react">GitHub repository</a>.</p>
 				{_demos.map ( function ( demo ) {
 					return (<DemoModule key={demo.id} demo={demo} />);
 				})}
-			</div>
+			</Reset>
 		);
 	}
 });

@@ -5,38 +5,8 @@ module.exports = function(grunt) {
 	grunt.initConfig({
 		pkg: grunt.file.readJSON('package.json'),
 
-		sass: {
-			dist: {
-				options: {
-					// Can be nested, compact, compressed, expanded
-					style: 'compressed'
-				},
-				files: {
-					'css/demo.css': 'css/scss/demo.scss'
-				}
-			}
-		},
-
-		autoprefixer: {
-			global: {
-				options: {
-					browsers: ['> 1%', 'last 2 versions', 'ff 17', 'opera 12.1', 'ie 8', 'ie 9', 'safari 7', 'safari 8'],
-					map: true
-				},
-				src: 'css/*.css'
-			},
-		},
 
 		watch: {
-			css: {
-				files: ['css/scss/*.scss', 'css/scss/**/*.scss'],
-				tasks: ['sass', 'autoprefixer', 'notify:css'],
-				options: {
-					livereload: 35730,
-					spawn: false
-				}
-			},
-
 			// builds the demo js
 			browserify: {
 				files: ['client/*.js', 'client/**/*.js', 'client/components/*.jsx', 'client/components/**/*.jsx', 'client/components/demo/*.jsxdemo'],
@@ -51,11 +21,6 @@ module.exports = function(grunt) {
 			js: {
 				options: {
 					message: 'JS rebuilt' 
-				}
-			},
-			css: {
-				options: {
-					message: 'CSS rebuilt'
 				}
 			}
 		},
@@ -160,8 +125,6 @@ module.exports = function(grunt) {
 	grunt.loadNpmTasks('grunt-react');
 	grunt.loadNpmTasks('grunt-contrib-concat');     // concatenate
 	grunt.loadNpmTasks('grunt-contrib-uglify');     // minify
-	grunt.loadNpmTasks('grunt-contrib-sass');
-	grunt.loadNpmTasks('grunt-autoprefixer');
 	grunt.loadNpmTasks('grunt-contrib-watch');      // watch files for changes
 
 	grunt.registerTask('default', ['watch']);
