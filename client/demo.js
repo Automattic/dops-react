@@ -1,6 +1,4 @@
-// This is the main entry point for the account summary screen
-require('./ie-shims');
-var React = require('react'), // TODO: split out into conditional include for <=IE9
+var React = require('react'),
 	Demo = require('./components/demo');
 
 jQuery(document).ready(function () {
