@@ -112,7 +112,7 @@ module.exports = function(grunt) {
 			options: {
 				base: '.'
 			},
-			src: ['demo.html', 'js/**/*', 'css/demo.css', 'node_modules/codemirror/lib/codemirror.css', 'node_modules/codemirror/theme/solarized.css']
+			src: ['demo.html', 'js/**/*', 'node_modules/codemirror/lib/codemirror.css', 'node_modules/codemirror/theme/solarized.css']
 		}
 	});
 
