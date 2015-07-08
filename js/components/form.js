@@ -10,6 +10,12 @@ var formStyles = {
 	}
 };
 
+var idCounter = 0;
+
+function getUniqueId() {
+	return 'formid' + (idCounter++);
+}
+
 var Section = React.createClass({displayName: "Section",
 	
 	propTypes: {
@@ -178,7 +184,7 @@ var Checkbox = React.createClass({displayName: "Checkbox",
 
 	getInitialState: function() {
 		return {
-			idSuffix: Math.round(Math.random()*1000)
+			uniqueId: getUniqueId()
 		};
 	},
 
@@ -192,7 +198,7 @@ var Checkbox = React.createClass({displayName: "Checkbox",
 
 	render: function() {
 		var $__0=       this.props,style=$__0.style,labelSuffix=$__0.labelSuffix,label=$__0.label,other=(function(source, exclusion) {var rest = {};var hasOwn = Object.prototype.hasOwnProperty;if (source == null) {throw new TypeError();}for (var key in source) {if (hasOwn.call(source, key) && !hasOwn.call(exclusion, key)) {rest[key] = source[key];}}return rest;})($__0,{style:1,labelSuffix:1,label:1});
-		var uniqueId = this.props.name + this.state.idSuffix;
+		var uniqueId = this.state.uniqueId;
 		var errorMessage;
 
 		if ( this.isFormSubmitted() ) {
@@ -271,6 +277,12 @@ var SelectInput = React.createClass({displayName: "SelectInput",
 		}
 	},
 
+	getInitialState: function() {
+		return {
+			uniqueId: getUniqueId()
+		};
+	},
+
 	changeValue: function (event) {
 		this.setValue(event.currentTarget.value);
     },
@@ -285,8 +297,8 @@ var SelectInput = React.createClass({displayName: "SelectInput",
 
 		return (
 			React.createElement("div", {style: m(formStyles.inputWrapper, this.props.inline && this.styles.inlineWrapper, this.styles.widthHack, this.props.style)}, 
-				React.createElement(Form.Label, {inline: this.props.inline, label: this.props.label, labelSuffix: this.props.labelSuffix, htmlFor: this.props.name, required: this.props.required}, 
-					React.createElement("select", {ref: "select", id: this.props.name, style: m(styles.select, errorMessage && styles.errorField, this.props.inline && this.styles.inline), value: this.getValue(), onChange: this.changeValue}, 
+				React.createElement(Form.Label, {inline: this.props.inline, label: this.props.label, labelSuffix: this.props.labelSuffix, htmlFor: this.state.uniqueId, required: this.props.required}, 
+					React.createElement("select", {ref: "select", id: this.state.uniqueId, style: m(styles.select, errorMessage && styles.errorField, this.props.inline && this.styles.inline), value: this.getValue(), onChange: this.changeValue}, 
 						this.props.children
 					)
 				), 
