@@ -1,16 +1,19 @@
-var Tabs = Demo.require('./tabs');
+var Tabs = Demo.require('./tabs'),
+	Card = Demo.require('./card');
 
 var DemoTabs = React.createClass({
 
 	render: function() {
 		return (
-			<div>
-				<h2>Horizontal</h2>
-				{this._renderTabs("horizontal")}
-				<hr />
-				<h2>Vertical</h2>
-				{this._renderTabs("vertical")}
-			</div>
+			<Card>
+				<Card.Section vertical title="Horizontal Tabs">
+					{this._renderTabs("horizontal")}
+				</Card.Section>
+
+				<Card.Section vertical title="Vertical Tabs">
+					{this._renderTabs("vertical")}
+				</Card.Section>
+			</Card>
 		);
 	},
 

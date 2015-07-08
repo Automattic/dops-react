@@ -38,7 +38,8 @@ var _demos = [
 		id: "demo-tabs",
 		js: require('./demo/demo-tabs'),
 		requires: {
-			'./tabs': require('./tabs')
+			'./tabs': require('./tabs'),
+			'./card': require('./card')
 		}
 	},
 	{
