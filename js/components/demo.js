@@ -25,7 +25,7 @@ var _demos = [
 	},
 	{
 		title: "Cards",
-		description: "Cards are boxes that have a title and sections. The sections can be laid out with the title above ('inline') or to the side.",
+		description: "Cards are boxes that have a title and sections. The sections can be laid out with the title above ('vertical') or to the side.",
 		id: "demo-card",
 		js: require('./demo/demo-card'),
 		requires: {
@@ -104,6 +104,7 @@ var _demos = [
 		js: require('./demo/demo-view'),
 		requires: {
 			'./view': require('./view'),
+			'./card': require('./card'),
 			'../styles': require('../styles')
 		}
 	},
@@ -159,7 +160,8 @@ var DemoModule = React.createClass({displayName: "DemoModule",
 		return (
 			React.createElement("div", {style: this.styles.wrapper}, 
 				React.createElement("h1", null, this.props.demo.title), 
-				React.createElement("h2", null, this.props.demo.description), 
+
+				React.createElement("h2", {style: {marginBottom: 24}}, this.props.demo.description), 
 				React.createElement(Col, {left: true}, 
 					this._renderScript( this.props.demo.js, this.props.demo.id)
 				), 

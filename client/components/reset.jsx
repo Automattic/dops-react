@@ -44,12 +44,10 @@ var Reset = React.createClass({
 			},
 			h2: {
 				color: styles.colors.gray,
-				fontSize: 16,
-				marginBottom: 24
+				fontSize: 16
 			},
 			h3: {
-				fontSize: 18,
-				marginBottom: 20
+				fontSize: 18
 			},
 			td: {
 				verticalAlign: 'top'

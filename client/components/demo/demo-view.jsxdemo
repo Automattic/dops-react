@@ -1,4 +1,5 @@
-var View = Demo.require('./view');
+var View = Demo.require('./view'),
+	Card = Demo.require('./card');
 
 var DemoView = React.createClass({
 
@@ -26,59 +27,61 @@ var DemoView = React.createClass({
 	
 	render: function() {
 		return (
-			<div>
-				<h2>Column</h2>
-				<View column style={this.styles.view}>
-					<View child style={this.styles.red}>Red</View>
-					<View child style={this.styles.green}>Green</View>
-					<View child style={this.styles.blue}>Blue</View>
-				</View>
-
-				<hr />
-				<h2>Column with padding</h2>
-				<View column padding={10} style={this.styles.view}>
-					<View child style={this.styles.red}>Red</View>
-					<View child style={this.styles.green}>Green</View>
-					<View child style={this.styles.blue}>Blue</View>
-				</View>
-
-				<hr />
-				<h2>Row with padding</h2>
-				<View row padding={10} style={this.styles.view}>
-					<View child style={this.styles.red}>Red</View>
-					<View child style={this.styles.green}>Green</View>
-					<View child style={this.styles.blue}>Blue</View>
-				</View>
-
-				<hr />
-				<h2>Row with padding and size weighting</h2>
-				<View row padding={10} style={this.styles.view}>
-					<View child width={1} style={this.styles.red}>Red</View>
-					<View child width={2} style={this.styles.green}>Green</View>
-					<View child width={1} style={this.styles.blue}>Blue</View>
-				</View>
-
-				<hr />
-				<h2>Proper nesting without weirdness requires "&lt;View child&gt;" for interior elements</h2>
-				<View row padding={10} style={this.styles.view}>
-					<View child stretch style={this.styles.red}>Red
-						<div style={this.styles.green}>Green</div>
+			<Card>
+				<Card.Section vertical title="Column">
+					<View column style={this.styles.view}>
+						<View child style={this.styles.red}>Red</View>
+						<View child style={this.styles.green}>Green</View>
+						<View child style={this.styles.blue}>Blue</View>
 					</View>
-					<View child stretch style={this.styles.blue}>Blue
-						<div style={this.styles.yellow}>Yellow</div>
+				</Card.Section>
+				
+				<Card.Section vertical title="Column with padding">
+					<View column padding={10} style={this.styles.view}>
+						<View child style={this.styles.red}>Red</View>
+						<View child style={this.styles.green}>Green</View>
+						<View child style={this.styles.blue}>Blue</View>
 					</View>
-				</View>
-				<h2>FYI, that same demo above without using Child looks like this:</h2>
-				<p>(it flexes all the elements inside the View children)</p>
-				<View row padding={10} style={this.styles.view}>
-					<View stretch style={this.styles.red}>Red
-						<div style={this.styles.green}>Green</div>
+				</Card.Section>
+
+				<Card.Section vertical title="Row with padding">
+					<View row padding={10} style={this.styles.view}>
+						<View child style={this.styles.red}>Red</View>
+						<View child style={this.styles.green}>Green</View>
+						<View child style={this.styles.blue}>Blue</View>
 					</View>
-					<View stretch style={this.styles.blue}>Blue
-						<div style={this.styles.yellow}>Yellow</div>
+				</Card.Section>
+
+				<Card.Section vertical title="Row with padding and size weighting">
+					<View row padding={10} style={this.styles.view}>
+						<View child width={1} style={this.styles.red}>Red</View>
+						<View child width={2} style={this.styles.green}>Green</View>
+						<View child width={1} style={this.styles.blue}>Blue</View>
 					</View>
-				</View>
-			</div>
+				</Card.Section>
+				
+				<Card.Section vertical title="Proper nesting without weirdness requires '&lt;View child&gt;' for interior elements">
+					<View row padding={10} style={this.styles.view}>
+						<View child stretch style={this.styles.red}>Red
+							<div style={this.styles.green}>Green</div>
+						</View>
+						<View child stretch style={this.styles.blue}>Blue
+							<div style={this.styles.yellow}>Yellow</div>
+						</View>
+					</View>
+				</Card.Section>
+
+				<Card.Section vertical title="FYI, that same demo above without using Child looks like this">
+					<View row padding={10} style={this.styles.view}>
+						<View stretch style={this.styles.red}>Red
+							<div style={this.styles.green}>Green</div>
+						</View>
+						<View stretch style={this.styles.blue}>Blue
+							<div style={this.styles.yellow}>Yellow</div>
+						</View>
+					</View>
+				</Card.Section>
+			</Card>
 		);
 	},
 });

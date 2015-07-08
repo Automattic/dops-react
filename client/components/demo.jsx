@@ -104,6 +104,7 @@ var _demos = [
 		js: require('./demo/demo-view'),
 		requires: {
 			'./view': require('./view'),
+			'./card': require('./card'),
 			'../styles': require('../styles')
 		}
 	},
@@ -159,7 +160,8 @@ var DemoModule = React.createClass({
 		return (
 			<div style={this.styles.wrapper}>
 				<h1>{this.props.demo.title}</h1>
-				<h2>{this.props.demo.description}</h2>
+
+				<h2 style={{marginBottom: 24}}>{this.props.demo.description}</h2>
 				<Col left>
 					{this._renderScript( this.props.demo.js, this.props.demo.id )}
 				</Col>
