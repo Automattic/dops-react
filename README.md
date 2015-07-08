@@ -2,9 +2,9 @@
 
 ## TL/DR
 
-A bunch of useful React components that include their own styling and try to do the "right thing" on mobile and desktop browsers.
+A bunch of useful, opinionated React components that include their own styling and try to do the "right thing" on mobile and desktop browsers.
 
-Check out [the demo](http://automattic.github.io/dops-react/demo.html) to see what's available.
+### [Check out the live demo](http://automattic.github.io/dops-react/demo.html) to see what's available.
 
 ```bash
 npm install dops-react --save-dev
