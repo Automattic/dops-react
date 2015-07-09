@@ -178,7 +178,7 @@ var DemoModule = React.createClass({
 		
 		return (
 			<div style={this.styles.code}>
-				<Codemirror defaultValue={sanitizedJs} theme="solarized" mode="text/e4x" readOnly={true} lineNumbers={true} />
+				<Codemirror value={sanitizedJs} theme="solarized" mode="text/e4x" readOnly={true} lineNumbers={true} />
 			</div>
 		);
 	},

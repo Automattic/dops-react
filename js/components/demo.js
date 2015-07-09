@@ -178,7 +178,7 @@ var DemoModule = React.createClass({displayName: "DemoModule",
 		
 		return (
 			React.createElement("div", {style: this.styles.code}, 
-				React.createElement(Codemirror, {defaultValue: sanitizedJs, theme: "solarized", mode: "text/e4x", readOnly: true, lineNumbers: true})
+				React.createElement(Codemirror, {value: sanitizedJs, theme: "solarized", mode: "text/e4x", readOnly: true, lineNumbers: true})
 			)
 		);
 	},
