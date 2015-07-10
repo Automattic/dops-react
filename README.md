@@ -173,7 +173,7 @@ Hopefully we'll have a cleaner solution for that at some point soon, but it got 
 
 ## Demo
 
-Open `[demo.html](https://github.com/Automattic/dops-react/blob/gh-pages/demo.html)` to see sample code and demos of the components. Please feel free to add/update this!
+Open [demo.html](https://github.com/Automattic/dops-react/blob/gh-pages/demo.html) to see sample code and demos of the components. Please feel free to add/update this!
 
 Injecting React components into the browser as both readable code and running javascript required a bit of hackery (dynamic browserify! dynamic jsx! hooray!), which is why the demo files are called "`foo.jsxdemo`" and are all in the `client/demo` directory, hanging off `demo.jsx`. See that file for the extension points; hopefully it's self-explanatory when you look at it.
 
