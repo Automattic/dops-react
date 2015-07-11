@@ -125,6 +125,11 @@ var ReactSlider = React.createClass({
 		]),
 
 		/**
+		 * Skip any of this array of values, if in "step" mode
+		 **/
+		skipValues: React.PropTypes.array,
+
+		/**
 		 * Determines whether the slider moves horizontally (from left to right) or vertically (from top to bottom).
 		 */
 		orientation: React.PropTypes.oneOf(['horizontal', 'vertical']),
@@ -706,6 +711,16 @@ var ReactSlider = React.createClass({
 			alignValue += (valModStep > 0) ? props.step : (-props.step);
 		}
 
+		// check if this is a value that we shouldn't align to
+		if ( this.props.skipValues && this.props.skipValues.indexOf(alignValue) >= 0 ) {
+			// check if we can go down
+			if ( alignValue - props.step >= this.props.min ) {
+				alignValue -= props.step;
+			} else {
+				alignValue += props.step;
+			}
+		}
+
 		return parseFloat(alignValue.toFixed(5));
 	},
 
@@ -719,16 +734,15 @@ var ReactSlider = React.createClass({
 		}
 
 		return (
-			React.createElement('div', {
-					ref: 'handle' + i,
-					key: 'handle' + i,
-					className: className,
-					style: style,
-					onMouseDown: this._createOnMouseDown(i),
-					onTouchStart: this._createOnTouchStart(i)
-				},
-				child
-			)
+			<div 
+				key={'handle' + i} 
+				ref={'handle' + i} 
+				className={className} 
+				style={style}
+				onMouseDown={this._createOnMouseDown(i)}
+				onTouchStart={this._createOnTouchStart(i)}>
+				{child}
+			</div>
 		);
 	},
 
@@ -755,13 +769,11 @@ var ReactSlider = React.createClass({
 	},
 
 	_renderBar: function(i, offsetFrom, offsetTo) {
+		var className = this.props.barClassName + ' ' + this.props.barClassName + '-' + i,
+			style = this._buildBarStyle(offsetFrom, this.state.upperBound - offsetTo);
+
 		return (
-			React.createElement('div', {
-				key: 'bar' + i,
-				ref: 'bar' + i,
-				className: this.props.barClassName + ' ' + this.props.barClassName + '-' + i,
-				style: this._buildBarStyle(offsetFrom, this.state.upperBound - offsetTo)
-			})
+			<div key={'bar' + i} ref={'bar' + i} className={className} style={style} />
 		);
 	},
 
