@@ -77,7 +77,7 @@ var TextInput = React.createClass({displayName: "TextInput",
 	},
 
 	changeValue: function (event) {
-		this.setValue(event.currentTarget.value);
+		this.setValue(event.target.value);
     },
 
 	render: function() {var $__1, $__2;
@@ -199,7 +199,7 @@ var Checkbox = React.createClass({displayName: "Checkbox",
 	},
 
 	changeValue: function (event) {
-		this.setValue(event.currentTarget.checked);
+		this.setValue(event.target.checked);
     },
 
 	render: function() {
@@ -290,7 +290,7 @@ var SelectInput = React.createClass({displayName: "SelectInput",
 	},
 
 	changeValue: function (event) {
-		this.setValue(event.currentTarget.value);
+		this.setValue(event.target.value);
     },
 
 	render: function() {
@@ -398,12 +398,6 @@ var Form = React.createClass({displayName: "Form",
     	form: {
     		fontFamily: styles.fonts.sans
     	}
-    },
-
-    clearValidationErrors: function() {
-    	this.refs.form.reset();
-    	this.refs.form.setInputValidationErrors({});
-    	this.refs.form.inputs = {};
     },
 
     submit: function() {
