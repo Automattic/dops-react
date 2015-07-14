@@ -400,6 +400,14 @@ var Form = React.createClass({
     	}
     },
 
+    getInitialState: function() {
+    	return {};
+    },
+
+    setValidationErrors: function(errors) {
+    	this.setState( { validationErrors: errors } );
+    },
+
     submit: function() {
     	this.refs.form.submit();
     },
@@ -408,7 +416,7 @@ var Form = React.createClass({
 		var { style, ...other } = this.props;
 		return (
 			<div style={m(this.styles.form, style)}>
-				<Formsy.Form ref="form" {...other}>
+				<Formsy.Form ref="form" validationErrors={this.state.validationErrors} {...other}>
 					{this.props.children}
 				</Formsy.Form>
 			</div>

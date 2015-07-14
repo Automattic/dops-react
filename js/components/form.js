@@ -400,6 +400,14 @@ var Form = React.createClass({displayName: "Form",
     	}
     },
 
+    getInitialState: function() {
+    	return {};
+    },
+
+    setValidationErrors: function(errors) {
+    	this.setState( { validationErrors: errors } );
+    },
+
     submit: function() {
     	this.refs.form.submit();
     },
@@ -408,7 +416,7 @@ var Form = React.createClass({displayName: "Form",
 		var $__0=     this.props,style=$__0.style,other=(function(source, exclusion) {var rest = {};var hasOwn = Object.prototype.hasOwnProperty;if (source == null) {throw new TypeError();}for (var key in source) {if (hasOwn.call(source, key) && !hasOwn.call(exclusion, key)) {rest[key] = source[key];}}return rest;})($__0,{style:1});
 		return (
 			React.createElement("div", {style: m(this.styles.form, style)}, 
-				React.createElement(Formsy.Form, React.__spread({ref: "form"},  other), 
+				React.createElement(Formsy.Form, React.__spread({ref: "form", validationErrors: this.state.validationErrors},  other), 
 					this.props.children
 				)
 			)
