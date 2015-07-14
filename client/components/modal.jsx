@@ -1,7 +1,7 @@
 var React = require('react'),
 	Icon = require('./icon'),
-	m = require('../utils/m'),
-	styles = require('../styles');
+	styles = require('../styles'),
+	Radium = require('radium');
 
 var Modal = React.createClass({
 	
@@ -39,7 +39,7 @@ var Modal = React.createClass({
 			WebkitTransition: 'all 0.5s',
 			transition: '0.5s',
 			zIndex: 100,
-			clear: 'both'
+			clear: 'both',
 		},
 
 		modalHeader: {
@@ -63,34 +63,18 @@ var Modal = React.createClass({
 			right: 0,
 			height: 46,
 			padding: 15,
-			color: styles.colors.gray
-		},
-
-		modalCloseHover: {
-			background: styles.colors.offWhite,
-			textDecoration: 'none'
+			color: styles.colors.gray,
+			':hover': {
+				background: styles.colors.offWhite,
+				textDecoration: 'none'
+			}
 		}
-
 	},
 
 	getDefaultProps: function() {
 		return {
 			style: 'narrow'
 		};
-	},
-
-	getInitialState: function() {
-		return {
-			modalCloseHover: false
-		};
-	},
-
-	onMouseOverClose: function() {
-		this.setState({modalCloseHover: true});
-	},
-
-	onMouseOutClose: function() {
-		this.setState({modalCloseHover: false});
 	},
 
 	handleClose: function(e) {
@@ -114,7 +98,7 @@ var Modal = React.createClass({
 		return (
 			<div>
 				<div style={this.styles.modalOverlay}></div>
-				<div style={m(this.styles.modal, containerStyle)}>
+				<div style={[this.styles.modal, containerStyle]}>
 					<div style={this.styles.modalHeader}>
 						<h1 style={this.styles.modalHeaderH1}>{this.props.title}</h1>
 						{this.props.subtitle && 
@@ -126,9 +110,7 @@ var Modal = React.createClass({
 					</div>
 					<a href="#" 
 						onClick={this.handleClose} 
-						style={m(this.styles.modalClose, this.state.modalCloseHover && this.styles.modalCloseHover)} 
-						onMouseOver={this.onMouseOverClose} 
-						onMouseOut={this.onMouseOutClose}>
+						style={this.styles.modalClose}>
 						<Icon name="close-alt" />
 					</a>
 				</div>
@@ -137,4 +119,4 @@ var Modal = React.createClass({
 	}
 });
 
-module.exports = Modal;
+module.exports = Radium(Modal);
