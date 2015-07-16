@@ -126,6 +126,15 @@ var _demos = [
 		requires: {
 			'./slider': require('./slider')
 		}
+	},
+	{
+		title: "Progress Bar",
+		description: "A simple progress bar",
+		id: "demo-progress-bar",
+		js: require('./demo/demo-progress-bar'),
+		requires: {
+			'./progress-bar': require('./progress-bar')
+		}
 	}
 ];
 
