@@ -1,30 +1,25 @@
 var React = require('react'),
 	styles = require('../styles'),
-	m = require('../utils/m');
+	Radium = require('radium');
 
 var Button = React.createClass({displayName: "Button",
 
 	propTypes: {
 		size: React.PropTypes.oneOf(['tiny', 'normal', 'big']),
-		color: React.PropTypes.oneOf(['gray', 'blue']),
+		color: React.PropTypes.oneOf(['gray', 'blue', 'green']),
+		theme: React.PropTypes.oneOf(['wp', 'jetpack']),
 		inline: React.PropTypes.bool,
-		onClick: React.PropTypes.func		
+		onClick: React.PropTypes.func,
+		href: React.PropTypes.string
 	},
 
 	getDefaultProps: function() {
-		return { size: 'normal', inline: true, color: 'gray' };
+		return { size: 'normal', inline: true, color: 'gray', theme: 'wp' };
 	},
 
-	handleMouseOver: function() {
-		this.setState({ hover: true });
-	},
-
-	handleMouseOut: function() {
-		this.setState({ hover: false });
-	},
-
-	getInitialState: function() {
-		return { hover: false };
+	handleCallbackHref: function(e) {
+		e.preventDefault();
+		window.location = this.props.href;
 	},
 
 	styles: {
@@ -40,7 +35,7 @@ var Button = React.createClass({displayName: "Button",
 			padding: '10px 20px',
 			textAlign: 'center',
 			textDecoration: 'none',
-			textTransform: 'uppercase',
+			// textTransform: 'uppercase',
 			WebkitFontSmoothing: 'antialiased',
 			transition: 'background 0.2s'
 		},
@@ -51,7 +46,7 @@ var Button = React.createClass({displayName: "Button",
 				padding: '2px 10px',
 			},
 			normal: {
-				fontSize: 12,
+				fontSize: 13,
 				padding: '5px 10px'
 			},
 			big: {
@@ -64,46 +59,84 @@ var Button = React.createClass({displayName: "Button",
 			gray: {
 				background: 'linear-gradient(#fff, #f9f9f9)',
 				borderColor: styles.colors.lightGray,
-				color: styles.colors.darkGray
-			},
-			grayHover: {
-				color: styles.colors.gray	
+				color: styles.colors.darkGray,
+				':hover': {
+					color: styles.colors.gray
+				}
 			},
 			blue: {
 				background: styles.colors.blue,
 				borderColor: 'rgba(0,0,0,0.6)',
-				color: 'white'
+				color: 'white',
+				':hover': {
+					background: styles.colors.lighterBlue,
+				}
 			},
-			blueHover: {
-				background: styles.colors.lighterBlue,
-	  			textDecoration: 'none'
+			green: {
+				background: styles.colors.green,
+				color: 'white',
+				borderColor: 'rgba(0,0,0,0.6)',
+				':hover': {
+					background: styles.colors.lighterGreen,
+				}
+
+			}
+		},
+
+		themes: {
+			wp: {},
+			jetpack: {
+				padding: '18px 24px 15px',
+				font: '400 20px/1 "Open Sans", Helvetica, sans-serif',
+				borderRadius: 6,
+				boxShadow: '0 6px 0 #3e6c20,0 6px 3px rgba(0,0,0,0.4)'
 			}
 		},
 		
 		inline: {
 			display: 'inline-block'
+		},
+
+		disabled: {
+			background: '#f9f9f9',
+			borderColor: styles.colors.lightGray,
+			color: styles.colors.lightGray,
+			':hover': {
+				background: '#f9f9f9',
+				borderColor: styles.colors.lightGray,
+				color: styles.colors.lightGray,
+			}
 		}
 	},
 
 	render: function() {
 
-		var $__0=        this.props,size=$__0.size,color=$__0.color,inline=$__0.inline,onClick=$__0.onClick,other=(function(source, exclusion) {var rest = {};var hasOwn = Object.prototype.hasOwnProperty;if (source == null) {throw new TypeError();}for (var key in source) {if (hasOwn.call(source, key) && !hasOwn.call(exclusion, key)) {rest[key] = source[key];}}return rest;})($__0,{size:1,color:1,inline:1,onClick:1});
+		var $__0=          this.props,size=$__0.size,color=$__0.color,inline=$__0.inline,onClick=$__0.onClick,theme=$__0.theme,href=$__0.href,other=(function(source, exclusion) {var rest = {};var hasOwn = Object.prototype.hasOwnProperty;if (source == null) {throw new TypeError();}for (var key in source) {if (hasOwn.call(source, key) && !hasOwn.call(exclusion, key)) {rest[key] = source[key];}}return rest;})($__0,{size:1,color:1,inline:1,onClick:1,theme:1,href:1});
 
-		var style = m(
+		var callback;
+
+		var combinedStyle = [
 			this.styles.basic, 
 			this.styles.sizes[size],
 			this.styles.colors[color],
-			this.state.hover && this.styles.colors[color+'Hover'],
+			this.styles.themes[theme],
+			this.props.disabled && this.styles.disabled,
 			inline && this.styles.inline,
 			this.props.style
-		);
+		];
+
+		if ( href && !onClick) {
+			callback = this.handleCallbackHref;
+		} else {
+			callback = onClick;
+		}
 
 		return (
-			React.createElement("button", React.__spread({},  other, {style: style, onClick: onClick, onMouseOver: this.handleMouseOver, onMouseOut: this.handleMouseOut}), 
+			React.createElement("button", React.__spread({},  other, {style: combinedStyle, onClick: callback, onMouseOver: this.handleMouseOver, onMouseOut: this.handleMouseOut}), 
 				this.props.children
 			)
 		);
 	}
 });
 
-module.exports = Button;
+module.exports = Radium(Button);

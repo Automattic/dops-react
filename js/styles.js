@@ -51,7 +51,9 @@ module.exports = {
 		veryLightGray: '#eee',
 		offWhite: '#f9f9f9',
 		accountActive: '#81bf16',
-		accountInactive: '#bbb'
+		accountInactive: '#bbb',
+		green: '#518d2a',
+		lighterGreen: '#57972d'
 	},
 
 	fonts: {
