@@ -35,7 +35,6 @@ var Button = React.createClass({displayName: "Button",
 			padding: '10px 20px',
 			textAlign: 'center',
 			textDecoration: 'none',
-			// textTransform: 'uppercase',
 			WebkitFontSmoothing: 'antialiased',
 			transition: 'background 0.2s'
 		},
@@ -87,9 +86,8 @@ var Button = React.createClass({displayName: "Button",
 			wp: {},
 			jetpack: {
 				padding: '18px 24px 15px',
-				font: '400 20px/1 "Open Sans", Helvetica, sans-serif',
 				borderRadius: 6,
-				border: 'none',
+				borderStyle: 'none',
 				boxShadow: '0 6px 0 #3e6c20,0 6px 3px rgba(0,0,0,0.4)'
 			}
 		},
