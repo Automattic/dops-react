@@ -1,4 +1,4 @@
-module.exports = {
+var styles = {
 	//layout
 	right: { float: 'right' },
 	
@@ -98,5 +98,38 @@ module.exports = {
 		fontSize: 12,
 		margin: '5px 0 0 0',
 		padding: 5
+	},
+
+	
+};
+
+// optional top-level styles for passing into the "reset" object
+styles.css = {
+	'> *': {
+		font: '14px/1.5 ' + styles.fonts.sans,
+		color: styles.colors.black
+	},
+	a: {
+		color: styles.colors.blue,
+		textDecoration: 'none'
+	},
+	'a:hover': {
+		textDecoration: 'underline'
+	},
+	h1: {
+		fontSize: 34
+	},
+	h2: {
+		color: styles.colors.gray,
+		fontSize: 16
+	},
+	h3: {
+		fontSize: 18
+	},
+	'h1, h2, h3': {
+		fontFamily: styles.fonts.serif,
+		fontWeight: 500
 	}
 };
+
+module.exports = styles;

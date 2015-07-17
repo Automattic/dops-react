@@ -2,7 +2,8 @@
 var React = require('react'),
 	Codemirror = require('./codemirror'),
 	Col = require('./col'),
-	Reset = require('./reset');
+	Reset = require('./reset'),
+	styles = require('../styles');
 
 var _demos = [
 	{
@@ -216,7 +217,7 @@ var Demo = React.createClass({
 
 	render: function() {
 		return (
-			<Reset>
+			<Reset css={styles.css}>
 				<h1>Demo of DOPS-React components</h1>
 				<p>This demonstrates some of the functionality provided by the DOPS-React library, a set of simple React components for building rich user interfaces.</p>
 				<p>For more information, check out the <a href="https://github.com/Automattic/dops-react">GitHub repository</a>.</p>

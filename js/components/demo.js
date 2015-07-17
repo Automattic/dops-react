@@ -2,7 +2,8 @@
 var React = require('react'),
 	Codemirror = require('./codemirror'),
 	Col = require('./col'),
-	Reset = require('./reset');
+	Reset = require('./reset'),
+	styles = require('../styles');
 
 var _demos = [
 	{
@@ -216,7 +217,7 @@ var Demo = React.createClass({displayName: "Demo",
 
 	render: function() {
 		return (
-			React.createElement(Reset, null, 
+			React.createElement(Reset, {css: styles.css}, 
 				React.createElement("h1", null, "Demo of DOPS-React components"), 
 				React.createElement("p", null, "This demonstrates some of the functionality provided by the DOPS-React library, a set of simple React components for building rich user interfaces."), 
 				React.createElement("p", null, "For more information, check out the ", React.createElement("a", {href: "https://github.com/Automattic/dops-react"}, "GitHub repository"), "."), 

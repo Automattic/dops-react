@@ -12,21 +12,23 @@
 // 	)
 // }
 
+// to add additional CSS, pass it in using the "CSS" property
+
 var React = require('react'),
 	Radium = require('radium'),
-	styles = require('../styles');
+	m = require('../utils/m');
 
 var idCounter = 0;
 
 var Reset = React.createClass({displayName: "Reset",
+	propTypes: {
+		css: React.PropTypes.object
+	},
+
 	style: {
 		resets: {
 			'*': {
 				boxSizing: 'border-box'
-			},
-			'> *': {
-				font: '14px/1.5 ' + styles.fonts.sans,
-				color: styles.colors.black
 			},
 			'div, ul, ol, li, h1, h2, h3, h4, h5, h6, form, fieldset, legend, input, button, textarea, p, blockquote, th, td': { 
 				margin: 0, padding: 0 
@@ -35,29 +37,8 @@ var Reset = React.createClass({displayName: "Reset",
 				border: 'none',
 				maxWidth: '100%'
 			},
-			'h1, h2, h3': {
-				fontFamily: styles.fonts.serif,
-				fontWeight: 500
-			},
-			h1: {
-				fontSize: 34
-			},
-			h2: {
-				color: styles.colors.gray,
-				fontSize: 16
-			},
-			h3: {
-				fontSize: 18
-			},
 			td: {
 				verticalAlign: 'top'
-			},
-			a: {
-				color: styles.colors.blue,
-				textDecoration: 'none'
-			},
-			'a:hover': {
-				textDecoration: 'underline'
 			},
 
 			// these support animations
@@ -142,7 +123,7 @@ var Reset = React.createClass({displayName: "Reset",
 
 		return (
 			React.createElement("div", React.__spread({id: id},  props), 
-				React.createElement(Radium.Style, {scopeSelector: '#'+id, rules: this.style.resets}), 
+				React.createElement(Radium.Style, {scopeSelector: '#'+id, rules: m(this.style.resets, this.props.css)}), 
 				this.props.children
 			)
 		);
