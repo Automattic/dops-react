@@ -1,4 +1,4 @@
-// simple noticon wrapper
+// simple genericon wrapper
 
 var React = require('react');
 

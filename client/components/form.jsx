@@ -2,7 +2,8 @@ var React = require('react'),
 	m = require('../utils/m'),
 	Formsy = require('formsy-react'),
 	Button = require('./button'),
-	styles = require('../styles');
+	styles = require('../styles'),
+	Radium = require('radium');
 
 var formStyles = {
 	inputWrapper: {
@@ -85,7 +86,7 @@ var TextInput = React.createClass({
 
 		if ( this.props.label ) {
 			return (
-				<Form.Label style={m(formStyles.inputWrapper, style)} label={label} labelSuffix={labelSuffix} htmlFor={this.state.uniqueId} required={this.props.required}>
+				<Form.Label style={[formStyles.inputWrapper, style]} label={label} labelSuffix={labelSuffix} htmlFor={this.state.uniqueId} required={this.props.required}>
 					{this._renderInput( this.props.label, ...other )}
 				</Form.Label>
 			);
@@ -435,7 +436,7 @@ Form.Section = Section;
 Form.Hidden = Hidden;
 Form.RadioInput = RadioInput;
 Form.SelectInput = SelectInput;
-Form.TextInput = TextInput;
+Form.TextInput = Radium(TextInput);
 Form.Checkbox = Checkbox;
 Form.Label = Label;
 Form.Row = Row;

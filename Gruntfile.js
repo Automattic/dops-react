@@ -29,14 +29,18 @@ module.exports = function(grunt) {
 			options: {
 				browserifyOptions: {
 					debug: true,
-					extensions: [ '.jsx', '.jsxdemo' ]
+					extensions: [ '.jsx', '.jsxdemo' ],
+					external: {
+						'react/addons':'React',
+						'react':'React'
+					}
 				},
 				transform: [
 					function(file) {
 						return stringify({extensions: ['.jsxdemo']}).call(stringify, file);
 					},
 					[require('grunt-react').browserify, { harmony: true }],
-					['browserify-shim'],
+					['browserify-shim', { global: true }],
 					'envify'
 				]
 			},
