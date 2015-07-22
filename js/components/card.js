@@ -54,6 +54,7 @@ var CardSection = React.createClass({displayName: "CardSection",
 	propTypes: {
 		title: React.PropTypes.any,
 		vertical: React.PropTypes.any,
+		style: React.PropTypes.object,
 		device: React.PropTypes.oneOf(['desktop', 'tablet', 'phone'])
 	},
 
@@ -63,7 +64,7 @@ var CardSection = React.createClass({displayName: "CardSection",
 
 	render: function() {
 		return (
-			React.createElement("div", {style: this.styles.wrapper}, 
+			React.createElement("div", {style: [this.styles.wrapper, this.props.style]}, 
 				this.props.title ? 
 					this._renderWithTitle() : 
 					this.props.children, 
@@ -151,6 +152,7 @@ var Card = React.createClass({displayName: "Card",
 		icon: React.PropTypes.string,
 		iconLabel: React.PropTypes.any,
 		iconColor: React.PropTypes.string,
+		style: React.PropTypes.object,
 		device: React.PropTypes.oneOf(['desktop', 'tablet', 'mobile'])
 	},
 
@@ -162,7 +164,7 @@ var Card = React.createClass({displayName: "Card",
 
 	render: function() {
 		return (
-			React.createElement("div", {style: [this.style.card, this.style.cardStacked]}, 
+			React.createElement("div", {style: [this.style.card, this.style.cardStacked, this.props.style]}, 
 				this.props.title && (
 					React.createElement("h2", {style: this.style.title}, 
 						this.props.title, 
