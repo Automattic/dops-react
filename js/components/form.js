@@ -65,6 +65,7 @@ var TextInput = React.createClass({displayName: "TextInput",
 		name: React.PropTypes.string.isRequired,
 		style: React.PropTypes.any,
 		label: React.PropTypes.any,
+		type: React.PropTypes.string,
 		labelSuffix: React.PropTypes.any,
 		required: React.PropTypes.any,
 		validations: React.PropTypes.string,
@@ -77,6 +78,10 @@ var TextInput = React.createClass({displayName: "TextInput",
 		};
 	},
 
+	getDefaultProps: function() {
+		return { type: "text" };
+	},
+
 	changeValue: function (event) {
 		this.setValue(event.target.value);
     },
@@ -87,15 +92,15 @@ var TextInput = React.createClass({displayName: "TextInput",
 		if ( this.props.label ) {
 			return (
 				React.createElement(Form.Label, {style: [formStyles.inputWrapper, style], label: label, labelSuffix: labelSuffix, htmlFor: this.state.uniqueId, required: this.props.required}, 
-					($__1 = this)._renderInput.apply($__1, [this.props.label].concat(other))
+					($__1 = this)._renderInput.apply($__1, [this.props.label, null].concat(other))
 				)
 			);
 		} else {
-			return ($__2 = this)._renderInput.apply($__2, [this.props.name].concat(other));
+			return ($__2 = this)._renderInput.apply($__2, [this.props.name, style].concat(other));
 		}	
 	},
 
-	_renderInput: function(label ) {for (var other=[],$__0=1,$__1=arguments.length;$__0<$__1;$__0++) other.push(arguments[$__0]);
+	_renderInput: function(label, style ) {for (var other=[],$__0=2,$__1=arguments.length;$__0<$__1;$__0++) other.push(arguments[$__0]);
 		var errorMessage;
 
 		if ( this.isFormSubmitted() ) {
@@ -106,10 +111,11 @@ var TextInput = React.createClass({displayName: "TextInput",
 		return (
 			React.createElement("div", null, 
 				React.createElement("input", React.__spread({
-					type: "text", 
+					type: this.props.type, 
 					id: this.state.uniqueId}, 
 					 other , 
-					{style: m(styles.input, errorMessage && styles.errorField), 
+					{placeholder: this.props.placeholder, 
+					style: [styles.input, errorMessage && styles.errorField, style], 
 					onChange: this.changeValue, 
 					value: this.getValue()})), 
 
@@ -321,7 +327,7 @@ var ActionBar = React.createClass({displayName: "ActionBar",
 			background: '#f9f9f9',
 			color: '#aaa',
 			margin: '-1px -20px',
-			padding: '15px 20px'
+			padding: '15px 20px',
 		}
 	},
 
@@ -331,7 +337,7 @@ var ActionBar = React.createClass({displayName: "ActionBar",
 
 	render: function() {
 		return (
-			React.createElement("div", {style: m(this.style.wrapper, this.props.style)}, 
+			React.createElement("div", {style: [this.style.wrapper, this.props.style]}, 
 				this.props.children
 			)
 		);
@@ -431,7 +437,7 @@ Form.requiredLabelFormatter = function(label) {
 };
 
 Form.Submit = Submit;
-Form.ActionBar = ActionBar;
+Form.ActionBar = Radium(ActionBar);
 Form.Section = Section;
 Form.Hidden = Hidden;
 Form.RadioInput = RadioInput;

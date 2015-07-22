@@ -65,6 +65,7 @@ var TextInput = React.createClass({
 		name: React.PropTypes.string.isRequired,
 		style: React.PropTypes.any,
 		label: React.PropTypes.any,
+		type: React.PropTypes.string,
 		labelSuffix: React.PropTypes.any,
 		required: React.PropTypes.any,
 		validations: React.PropTypes.string,
@@ -77,6 +78,10 @@ var TextInput = React.createClass({
 		};
 	},
 
+	getDefaultProps: function() {
+		return { type: "text" };
+	},
+
 	changeValue: function (event) {
 		this.setValue(event.target.value);
     },
@@ -87,15 +92,15 @@ var TextInput = React.createClass({
 		if ( this.props.label ) {
 			return (
 				<Form.Label style={[formStyles.inputWrapper, style]} label={label} labelSuffix={labelSuffix} htmlFor={this.state.uniqueId} required={this.props.required}>
-					{this._renderInput( this.props.label, ...other )}
+					{this._renderInput( this.props.label, null, ...other )}
 				</Form.Label>
 			);
 		} else {
-			return this._renderInput( this.props.name, ...other );
+			return this._renderInput( this.props.name, style, ...other );
 		}	
 	},
 
-	_renderInput: function(label, ...other) {
+	_renderInput: function(label, style, ...other) {
 		var errorMessage;
 
 		if ( this.isFormSubmitted() ) {
@@ -106,10 +111,11 @@ var TextInput = React.createClass({
 		return (
 			<div>
 				<input 
-					type="text" 
+					type={this.props.type}
 					id={this.state.uniqueId}
 					{ ...other }
-					style={m(styles.input, errorMessage && styles.errorField)}
+					placeholder={this.props.placeholder}
+					style={[styles.input, errorMessage && styles.errorField, style]}
 					onChange={this.changeValue} 
 					value={this.getValue()} />
 
@@ -321,7 +327,7 @@ var ActionBar = React.createClass({
 			background: '#f9f9f9',
 			color: '#aaa',
 			margin: '-1px -20px',
-			padding: '15px 20px'
+			padding: '15px 20px',
 		}
 	},
 
@@ -331,7 +337,7 @@ var ActionBar = React.createClass({
 
 	render: function() {
 		return (
-			<div style={m(this.style.wrapper, this.props.style)}>
+			<div style={[this.style.wrapper, this.props.style]}>
 				{this.props.children}
 			</div>
 		);
@@ -431,7 +437,7 @@ Form.requiredLabelFormatter = function(label) {
 };
 
 Form.Submit = Submit;
-Form.ActionBar = ActionBar;
+Form.ActionBar = Radium(ActionBar);
 Form.Section = Section;
 Form.Hidden = Hidden;
 Form.RadioInput = RadioInput;
