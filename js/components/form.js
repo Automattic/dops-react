@@ -107,21 +107,19 @@ var TextInput = React.createClass({displayName: "TextInput",
 	_renderInput: function(label, style ) {for (var other=[],$__0=2,$__1=arguments.length;$__0<$__1;$__0++) other.push(arguments[$__0]);
 		var errorMessage;
 
-		if ( this.props.validationError ) {
-			errorMessage = this.props.validationError;
-		} else if ( this.isFormSubmitted() ) {
+		if ( !this.isPristine() ) {
 			errorMessage = this.showError() ? this.getErrorMessage() : 
-							this.showRequired() ? Form.requiredLabelFormatter(this.props.label) : null;
+							this.showRequired() ? Form.requiredLabelFormatter(this.props.label || this.props.placeholder || "") : null;
 		}
 
 		return (
-			React.createElement("div", null, 
+			React.createElement("div", {style: style}, 
 				React.createElement("input", React.__spread({
 					type: this.props.type, 
 					id: this.state.uniqueId}, 
 					 other , 
 					{placeholder: this.props.placeholder, 
-					style: [styles.input, errorMessage && styles.errorField, style], 
+					style: [styles.input, errorMessage && styles.errorField], 
 					onChange: this.changeValue, 
 					value: this.getValue()})), 
 
@@ -220,11 +218,9 @@ var Checkbox = React.createClass({displayName: "Checkbox",
 		var uniqueId = this.state.uniqueId;
 		var errorMessage;
 
-		if ( this.props.validationError ) {
-			errorMessage = this.props.validationError;
-		} else if ( this.isFormSubmitted() ) {
+		if ( !this.isPristine() ) {
 			errorMessage =  this.showError() ? this.getErrorMessage() : 
-							this.showRequired() ? Form.requiredLabelFormatter(this.props.label) : null;
+							this.showRequired() ? Form.requiredLabelFormatter(this.props.label || this.props.placeholder || "") : null;
 		}
 
 		return (
@@ -311,9 +307,9 @@ var SelectInput = React.createClass({displayName: "SelectInput",
 	render: function() {
 		var errorMessage;
 
-		if ( this.isFormSubmitted() ) {
+		if ( !this.isPristine() ) {
 			errorMessage = this.showError() ? this.getErrorMessage() : 
-							this.showRequired() ? Form.requiredLabelFormatter(this.props.label) : null;
+							this.showRequired() ? Form.requiredLabelFormatter(this.props.label || this.props.placeholder || "") : null;
 		}
 
 		return (
@@ -412,7 +408,8 @@ var Form = React.createClass({displayName: "Form",
 		onValidSubmit: React.PropTypes.func,
 		onInvalidValidSubmit: React.PropTypes.func,
 		onValid: React.PropTypes.func,
-		onInvalidValid: React.PropTypes.func
+		onInvalidValid: React.PropTypes.func,
+		validationErrors: React.PropTypes.object
 	},
 
     styles: {
@@ -425,9 +422,13 @@ var Form = React.createClass({displayName: "Form",
     	return {};
     },
 
-    setValidationErrors: function(errors) {
-    	this.setState( { validationErrors: errors } );
+    isValid: function() {
+    	return this.refs.form.isValid();
     },
+
+    // setValidationErrors: function(errors) {
+    // 	this.setState( { validationErrors: errors } );
+    // },
 
     submit: function() {
     	this.refs.form.submit();
@@ -437,7 +438,7 @@ var Form = React.createClass({displayName: "Form",
 		var $__0=     this.props,style=$__0.style,other=(function(source, exclusion) {var rest = {};var hasOwn = Object.prototype.hasOwnProperty;if (source == null) {throw new TypeError();}for (var key in source) {if (hasOwn.call(source, key) && !hasOwn.call(exclusion, key)) {rest[key] = source[key];}}return rest;})($__0,{style:1});
 		return (
 			React.createElement("div", {style: m(this.styles.form, style)}, 
-				React.createElement(Formsy.Form, React.__spread({ref: "form", validationErrors: this.state.validationErrors},  other), 
+				React.createElement(Formsy.Form, React.__spread({ref: "form"},  other), 
 					this.props.children
 				)
 			)

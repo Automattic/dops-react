@@ -107,21 +107,19 @@ var TextInput = React.createClass({
 	_renderInput: function(label, style, ...other) {
 		var errorMessage;
 
-		if ( this.props.validationError ) {
-			errorMessage = this.props.validationError;
-		} else if ( this.isFormSubmitted() ) {
+		if ( !this.isPristine() ) {
 			errorMessage = this.showError() ? this.getErrorMessage() : 
-							this.showRequired() ? Form.requiredLabelFormatter(this.props.label) : null;
+							this.showRequired() ? Form.requiredLabelFormatter(this.props.label || this.props.placeholder || "") : null;
 		}
 
 		return (
-			<div>
+			<div style={style}>
 				<input 
 					type={this.props.type}
 					id={this.state.uniqueId}
 					{ ...other }
 					placeholder={this.props.placeholder}
-					style={[styles.input, errorMessage && styles.errorField, style]}
+					style={[styles.input, errorMessage && styles.errorField]}
 					onChange={this.changeValue} 
 					value={this.getValue()} />
 
@@ -220,11 +218,9 @@ var Checkbox = React.createClass({
 		var uniqueId = this.state.uniqueId;
 		var errorMessage;
 
-		if ( this.props.validationError ) {
-			errorMessage = this.props.validationError;
-		} else if ( this.isFormSubmitted() ) {
+		if ( !this.isPristine() ) {
 			errorMessage =  this.showError() ? this.getErrorMessage() : 
-							this.showRequired() ? Form.requiredLabelFormatter(this.props.label) : null;
+							this.showRequired() ? Form.requiredLabelFormatter(this.props.label || this.props.placeholder || "") : null;
 		}
 
 		return (
@@ -311,9 +307,9 @@ var SelectInput = React.createClass({
 	render: function() {
 		var errorMessage;
 
-		if ( this.isFormSubmitted() ) {
+		if ( !this.isPristine() ) {
 			errorMessage = this.showError() ? this.getErrorMessage() : 
-							this.showRequired() ? Form.requiredLabelFormatter(this.props.label) : null;
+							this.showRequired() ? Form.requiredLabelFormatter(this.props.label || this.props.placeholder || "") : null;
 		}
 
 		return (
@@ -412,7 +408,8 @@ var Form = React.createClass({
 		onValidSubmit: React.PropTypes.func,
 		onInvalidValidSubmit: React.PropTypes.func,
 		onValid: React.PropTypes.func,
-		onInvalidValid: React.PropTypes.func
+		onInvalidValid: React.PropTypes.func,
+		validationErrors: React.PropTypes.object
 	},
 
     styles: {
@@ -425,9 +422,13 @@ var Form = React.createClass({
     	return {};
     },
 
-    setValidationErrors: function(errors) {
-    	this.setState( { validationErrors: errors } );
+    isValid: function() {
+    	return this.refs.form.isValid();
     },
+
+    // setValidationErrors: function(errors) {
+    // 	this.setState( { validationErrors: errors } );
+    // },
 
     submit: function() {
     	this.refs.form.submit();
@@ -437,7 +438,7 @@ var Form = React.createClass({
 		var { style, ...other } = this.props;
 		return (
 			<div style={m(this.styles.form, style)}>
-				<Formsy.Form ref="form" validationErrors={this.state.validationErrors} {...other}>
+				<Formsy.Form ref="form" {...other}>
 					{this.props.children}
 				</Formsy.Form>
 			</div>
