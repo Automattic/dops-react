@@ -10,11 +10,12 @@ var Button = React.createClass({
 		theme: React.PropTypes.oneOf(['wp', 'jetpack']),
 		inline: React.PropTypes.bool,
 		onClick: React.PropTypes.func,
+		disabled: React.PropTypes.bool,
 		href: React.PropTypes.string
 	},
 
 	getDefaultProps: function() {
-		return { size: 'normal', inline: true, color: 'gray', theme: 'wp' };
+		return { size: 'normal', inline: true, color: 'gray', theme: 'wp', disabled: false };
 	},
 
 	handleCallbackHref: function(e) {
