@@ -326,8 +326,14 @@ var ActionBar = React.createClass({
 		wrapper: {
 			background: '#f9f9f9',
 			color: '#aaa',
-			margin: '0px -20px',
-			padding: '15px 20px',
+			marginTop: 0,
+			marginBottom: 0,
+			marginLeft: -20,
+			marginRight: -20,
+			paddingTop: 15,
+			paddingBottom: 15,
+			paddingLeft: 20,
+			paddingRight: 20
 		}
 	},
 
