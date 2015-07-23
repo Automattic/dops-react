@@ -69,7 +69,8 @@ var TextInput = React.createClass({displayName: "TextInput",
 		labelSuffix: React.PropTypes.any,
 		required: React.PropTypes.any,
 		validations: React.PropTypes.string,
-		validationError: React.PropTypes.string
+		validationError: React.PropTypes.string,
+		onChange: React.PropTypes.func
 	},
 
 	getInitialState: function() {
@@ -84,6 +85,9 @@ var TextInput = React.createClass({displayName: "TextInput",
 
 	changeValue: function (event) {
 		this.setValue(event.target.value);
+		if ( this.props.onChange ) {
+			this.props.onChange(event);
+		}
     },
 
 	render: function() {var $__1, $__2;
@@ -103,7 +107,9 @@ var TextInput = React.createClass({displayName: "TextInput",
 	_renderInput: function(label, style ) {for (var other=[],$__0=2,$__1=arguments.length;$__0<$__1;$__0++) other.push(arguments[$__0]);
 		var errorMessage;
 
-		if ( this.isFormSubmitted() ) {
+		if ( this.props.validationError ) {
+			errorMessage = this.props.validationError;
+		} else if ( this.isFormSubmitted() ) {
 			errorMessage = this.showError() ? this.getErrorMessage() : 
 							this.showRequired() ? Form.requiredLabelFormatter(this.props.label) : null;
 		}
@@ -214,8 +220,10 @@ var Checkbox = React.createClass({displayName: "Checkbox",
 		var uniqueId = this.state.uniqueId;
 		var errorMessage;
 
-		if ( this.isFormSubmitted() ) {
-			errorMessage = this.showError() ? this.getErrorMessage() : 
+		if ( this.props.validationError ) {
+			errorMessage = this.props.validationError;
+		} else if ( this.isFormSubmitted() ) {
+			errorMessage =  this.showError() ? this.getErrorMessage() : 
 							this.showRequired() ? Form.requiredLabelFormatter(this.props.label) : null;
 		}
 
@@ -326,8 +334,14 @@ var ActionBar = React.createClass({displayName: "ActionBar",
 		wrapper: {
 			background: '#f9f9f9',
 			color: '#aaa',
-			margin: '0px -20px',
-			padding: '15px 20px',
+			marginTop: 0,
+			marginBottom: 0,
+			marginLeft: -20,
+			marginRight: -20,
+			paddingTop: 15,
+			paddingBottom: 15,
+			paddingLeft: 20,
+			paddingRight: 20
 		}
 	},
 

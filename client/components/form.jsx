@@ -69,7 +69,8 @@ var TextInput = React.createClass({
 		labelSuffix: React.PropTypes.any,
 		required: React.PropTypes.any,
 		validations: React.PropTypes.string,
-		validationError: React.PropTypes.string
+		validationError: React.PropTypes.string,
+		onChange: React.PropTypes.func
 	},
 
 	getInitialState: function() {
@@ -84,6 +85,9 @@ var TextInput = React.createClass({
 
 	changeValue: function (event) {
 		this.setValue(event.target.value);
+		if ( this.props.onChange ) {
+			this.props.onChange(event);
+		}
     },
 
 	render: function() {
@@ -103,7 +107,9 @@ var TextInput = React.createClass({
 	_renderInput: function(label, style, ...other) {
 		var errorMessage;
 
-		if ( this.isFormSubmitted() ) {
+		if ( this.props.validationError ) {
+			errorMessage = this.props.validationError;
+		} else if ( this.isFormSubmitted() ) {
 			errorMessage = this.showError() ? this.getErrorMessage() : 
 							this.showRequired() ? Form.requiredLabelFormatter(this.props.label) : null;
 		}
@@ -214,8 +220,10 @@ var Checkbox = React.createClass({
 		var uniqueId = this.state.uniqueId;
 		var errorMessage;
 
-		if ( this.isFormSubmitted() ) {
-			errorMessage = this.showError() ? this.getErrorMessage() : 
+		if ( this.props.validationError ) {
+			errorMessage = this.props.validationError;
+		} else if ( this.isFormSubmitted() ) {
+			errorMessage =  this.showError() ? this.getErrorMessage() : 
 							this.showRequired() ? Form.requiredLabelFormatter(this.props.label) : null;
 		}
 
