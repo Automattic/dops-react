@@ -88,7 +88,7 @@ var TextInput = React.createClass({
 		if ( this.props.onChange ) {
 			this.props.onChange(event);
 		}
-    },
+	},
 
 	render: function() {
 		var { style, labelSuffix, label, ...other } = this.props;
@@ -211,7 +211,7 @@ var Checkbox = React.createClass({
 
 	changeValue: function (event) {
 		this.setValue(event.target.checked);
-    },
+	},
 
 	render: function() {
 		var { style, labelSuffix, label, ...other } = this.props;
@@ -219,7 +219,7 @@ var Checkbox = React.createClass({
 		var errorMessage;
 
 		if ( !this.isPristine() ) {
-			errorMessage =  this.showError() ? this.getErrorMessage() : 
+			errorMessage = this.showError() ? this.getErrorMessage() : 
 							this.showRequired() ? Form.requiredLabelFormatter(this.props.label || this.props.placeholder || "") : null;
 		}
 
@@ -302,7 +302,7 @@ var SelectInput = React.createClass({
 
 	changeValue: function (event) {
 		this.setValue(event.target.value);
-    },
+	},
 
 	render: function() {
 		var errorMessage;
@@ -373,20 +373,20 @@ var Submit = React.createClass({
  * @license WTFPL (http://www.wtfpl.net/txt/copying)
  */
 var luhnChk = (function (arr) {
-    return function (ccNum) {
-        var 
-            len = ccNum.length,
-            bit = 1,
-            sum = 0,
-            val;
+	return function (ccNum) {
+		var 
+			len = ccNum.length,
+			bit = 1,
+			sum = 0,
+			val;
  
-        while (len) {
-            val = parseInt(ccNum.charAt(--len), 10);
-            sum += (bit ^= 1) ? arr[val] : val;
-        }
+		while (len) {
+			val = parseInt(ccNum.charAt(--len), 10);
+			sum += (bit ^= 1) ? arr[val] : val;
+		}
  
-        return sum && sum % 10 === 0;
-    };
+		return sum && sum % 10 === 0;
+	};
 }([0, 2, 4, 6, 8, 1, 3, 5, 7, 9]));
 
 // To find out more about validators, see:
@@ -412,27 +412,27 @@ var Form = React.createClass({
 		validationErrors: React.PropTypes.object
 	},
 
-    styles: {
-    	form: {
-    		fontFamily: styles.fonts.sans
-    	}
-    },
+	styles: {
+		form: {
+			fontFamily: styles.fonts.sans
+		}
+	},
 
-    getInitialState: function() {
-    	return {};
-    },
+	getInitialState: function() {
+		return {};
+	},
 
-    isValid: function() {
-    	return this.refs.form.isValid();
-    },
+	isValid: function() {
+		return this.refs.form.isValid();
+	},
 
-    // setValidationErrors: function(errors) {
-    // 	this.setState( { validationErrors: errors } );
-    // },
+	// setValidationErrors: function(errors) {
+	// 	this.setState( { validationErrors: errors } );
+	// },
 
-    submit: function() {
-    	this.refs.form.submit();
-    },
+	submit: function() {
+		this.refs.form.submit();
+	},
 
 	render: function() {
 		var { style, ...other } = this.props;

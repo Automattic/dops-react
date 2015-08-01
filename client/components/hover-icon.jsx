@@ -28,8 +28,8 @@ var HoverIcon = React.createClass({
 			dark: {
 				borderRadius: 3,
 				background: 'rgba(0, 0, 0, 0.9)',
-				color: '#fff',
-			},	
+				color: '#fff'
+			}
 		},
 		tooltipHover: { display: 'block' },
 		icon: { position: 'relative' }

@@ -83,7 +83,7 @@ var View = React.createClass({
 		var viewStyle = calcFlexStyle(viewProps);
 
 		// this is so we can say <View child .../> and not get display:flex
-		var computedStyle = this.props.child ? m(viewStyle, ...style) : m(flexContainerStyle, viewStyle, ...style);
+		var computedStyle = this.props.child ? m(viewStyle, style) : m(flexContainerStyle, viewStyle, style);
 
 		return <div {...other} style={computedStyle}>{this._childrenWithPadding()}</div>;
 	}

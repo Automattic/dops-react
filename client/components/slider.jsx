@@ -58,7 +58,7 @@ var ReactSlider = React.createClass({
 		},
 
 		activeHandle: {
-			backgroundColor: 'grey',
+			backgroundColor: 'grey'
 		},
 
 		bar: {
@@ -476,7 +476,7 @@ var ReactSlider = React.createClass({
 
 	_start: function(i, position) {
 		// if activeElement is body window will lost focus in IE9
-		if (document.activeElement && document.activeElement != document.body) {
+		if (document.activeElement && document.activeElement !== document.body) {
 			document.activeElement.blur();
 		}
 
@@ -757,8 +757,8 @@ var ReactSlider = React.createClass({
 		var res = this.tempArray;
 		var renderHandle = this._renderHandle;
 		if (React.Children.count(this.props.children) > 0) {
-			React.Children.forEach(this.props.children, function(child, i) {
-				res[i] = renderHandle(styles[i], child, i);
+			React.Children.forEach(this.props.children, function(child, index) {
+				res[index] = renderHandle(styles[index], child, index);
 			});
 		} else {
 			for (i = 0; i < l; i++) {
