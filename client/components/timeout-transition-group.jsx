@@ -88,6 +88,15 @@ function animationSupported() {
  * Functions for element class management to replace dependency on jQuery
  * addClass, removeClass and hasClass
  */
+
+function hasClass(element, className) {
+    if (element.classList) {
+        return element.classList.contains(className);
+    } else {
+        return (' ' + element.className + ' ').indexOf(' ' + className + ' ') > -1;
+    }
+}
+
 function addClass(element, className) {
     if (element.classList) {
         element.classList.add(className);
@@ -96,6 +105,7 @@ function addClass(element, className) {
     }
     return element;
 }
+
 function removeClass(element, className) {
     if (hasClass(className)) {
         if (element.classList) {
@@ -106,13 +116,6 @@ function removeClass(element, className) {
         }
     }
     return element;
-}
-function hasClass(element, className) {
-    if (element.classList) {
-        return element.classList.contains(className);
-    } else {
-        return (' ' + element.className + ' ').indexOf(' ' + className + ' ') > -1;
-    }
 }
 
 var TimeoutTransitionGroupChild = React.createClass({
@@ -206,7 +209,7 @@ var TimeoutTransitionGroup = React.createClass({
         leaveTimeout: React.PropTypes.number.isRequired,
         transitionName: React.PropTypes.string.isRequired,
         transitionEnter: React.PropTypes.bool,
-        transitionLeave: React.PropTypes.bool,
+        transitionLeave: React.PropTypes.bool
     },
 
     getDefaultProps: function() {

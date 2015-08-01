@@ -44,7 +44,7 @@ function calcFlexStyle(props) {
 
 var View = React.createClass({
 	_childrenWithPadding: function() {
-		if ( ! this.props.padding ) {
+		if ( !this.props.padding ) {
 			return this.props.children;	
 		}
 

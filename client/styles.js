@@ -98,7 +98,7 @@ var styles = {
 		fontSize: 12,
 		margin: '5px 0 0 0',
 		padding: 5
-	},
+	}
 
 	
 };

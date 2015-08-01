@@ -16,7 +16,7 @@ var AlertBox = React.createClass({
 		},
 		error: {
 			backgroundColor: '#ee6c5b',
-  			color: '#fff'
+			color: '#fff'
 		},
 		title: {
 			borderBottom: '1px solid rgba(255, 255, 255, 0.5)',

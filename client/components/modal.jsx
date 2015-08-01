@@ -39,7 +39,7 @@ var Modal = React.createClass({
 			WebkitTransition: 'all 0.5s',
 			transition: '0.5s',
 			zIndex: 100,
-			clear: 'both',
+			clear: 'both'
 		},
 
 		modalHeader: {

@@ -68,9 +68,9 @@ var Tabs = React.createClass({
 			},
 			activeLink: {
 				borderColor: '#029dd6',
-		  		color: '#029dd6',
-		  		background: '#f9f9f9',
-		  		textDecoration: 'none'
+				color: '#029dd6',
+				background: '#f9f9f9',
+				textDecoration: 'none'
 			},
 			content: {
 				float: 'right',
@@ -101,7 +101,7 @@ var Tabs = React.createClass({
 	},
 
 	handleMouseOutTab: function( index ) {
-		if ( this.state.hoverTab == index ) {
+		if ( this.state.hoverTab === index ) {
 			this.setState({ hoverTab: null });
 		}
 	},
@@ -118,7 +118,7 @@ var Tabs = React.createClass({
 				{this._renderNav(theme)}
 				<div style={theme.content}>
 					{React.Children.map(this.props.children, function( child, index ){
-						if ( index == this.state.activeTab ) {
+						if ( index === this.state.activeTab ) {
 							return child;
 						} else {
 							return null;

@@ -43,7 +43,7 @@ var Button = React.createClass({
 		sizes: {
 			tiny: {
 				fontSize: 10,
-				padding: '2px 10px',
+				padding: '2px 10px'
 			},
 			normal: {
 				fontSize: 13,
@@ -69,7 +69,7 @@ var Button = React.createClass({
 				borderColor: 'rgba(0,0,0,0.6)',
 				color: 'white',
 				':hover': {
-					background: styles.colors.lighterBlue,
+					background: styles.colors.lighterBlue
 				}
 			},
 			green: {
@@ -77,7 +77,7 @@ var Button = React.createClass({
 				color: 'white',
 				borderColor: 'rgba(0,0,0,0.6)',
 				':hover': {
-					background: styles.colors.lighterGreen,
+					background: styles.colors.lighterGreen
 				}
 
 			}
@@ -104,7 +104,7 @@ var Button = React.createClass({
 			':hover': {
 				background: '#f9f9f9',
 				borderColor: styles.colors.lightGray,
-				color: styles.colors.lightGray,
+				color: styles.colors.lightGray
 			}
 		}
 	},

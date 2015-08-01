@@ -11,14 +11,14 @@ var CardSection = React.createClass({
 		wrapper: {
 			borderBottom: '1px solid #eee',
 			fontSize: 14,
-			padding: '10px 0',
+			padding: '10px 0'
 		},
 
 		label: {
 			color: '#999',
 			fontSize: 12,
 			fontWeight: 'normal',
-			textTransform: 'uppercase',
+			textTransform: 'uppercase'
 		},
 
 		content: {},
@@ -126,7 +126,7 @@ var Card = React.createClass({
 			'@media all and (max-width: 1000px)': {
 				float: 'none',
 				width: '100%'
-			},
+			}
 		},
 
 		cardStacked: {
