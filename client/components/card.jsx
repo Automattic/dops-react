@@ -163,12 +163,13 @@ var Card = React.createClass({
 	},
 
 	render: function() {
+		var { style, title, icon, iconLabel, ...other } = this.props;
 		return (
-			<div style={[this.style.card, this.style.cardStacked, this.props.style]}>
+			<div {...other} style={[this.style.card, this.style.cardStacked, this.props.style]}>
 				{this.props.title && (
 					<h2 style={this.style.title}>
-						{this.props.title}
-						{(this.props.icon || this.props.iconLabel) && (
+						{title}
+						{(icon || iconLabel) && (
 							this._renderIcon()
 						)}
 					</h2>

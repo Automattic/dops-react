@@ -105,6 +105,8 @@ var TextInput = React.createClass({
 	},
 
 	_renderInput: function(label, style, ...other) {
+		style = style || {};
+		
 		var errorMessage;
 
 		if ( !this.isPristine() ) {
