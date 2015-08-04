@@ -82,7 +82,7 @@ var View = React.createClass({
 
 		var viewStyle = calcFlexStyle(viewProps);
 
-		style = style || [];
+		style = style || {};
 
 		// this is so we can say <View child .../> and not get display:flex
 		var computedStyle = this.props.child ? m(viewStyle, ...style) : m(flexContainerStyle, viewStyle, ...style);
