@@ -1,5 +1,11 @@
 # DOPS React
 
+## THIS REPO IS DEPRECATED
+
+This approach has been abandoned in favour of one which separates (S)CSS from components while still allowing full componentisation of style and javascription, using Webpack text extraction. We will open source the new components when they're ready for public consumption, but in the meantime this repo is left here in case it's useful to others wishing to pursue the inline style approach (which is still great! but didn't work for all the internal users of this library).
+
+Also, gulp and webpack are amazing, just FYI.
+
 ## TL/DR
 
 A bunch of useful, opinionated React components that include their own styling and try to do the "right thing" on mobile and desktop browsers.
